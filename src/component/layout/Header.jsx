@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Layout ,Breadcrumb,Icon,Tooltip,Avatar } from 'antd';
+import Enum from '../common/Enum.js';
 
 const { Header } = Layout;
 class Heade extends Component {
@@ -50,7 +51,7 @@ class Heade extends Component {
 	     <div className='header-right'>
      		{window.userName}
 	     	<Tooltip title="点击登出">
-	     		<a href='/logout'><Icon type="logout" style={{ fontSize: 19, color: '#08c' }} /></a>
+	     		<a href='{Enum.baseUrl}/logout'><Icon type="logout" style={{ fontSize: 19, color: '#08c' }} /></a>
 	     	</Tooltip>
 	     </div>
        </Header>
