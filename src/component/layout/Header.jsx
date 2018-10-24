@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import { Layout ,Breadcrumb,Icon,Tooltip,Avatar } from 'antd';
 
 const { Header } = Layout;
@@ -48,7 +49,7 @@ class Heade extends Component {
        <Header style={{ background: '#fff', padding: 0 }}>
 	      {this.renderBreadcrumb()}
 	     <div className='header-right'>
-     		{window.userName}
+     		<Link to='/userProfile'>{window.userName}</Link>
 	     	<Tooltip title="点击登出">
 	     		<a href='logout'><Icon type="logout" style={{ fontSize: 19, color: '#08c' }} /></a>
 	     	</Tooltip>

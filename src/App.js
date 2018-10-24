@@ -33,22 +33,29 @@ class App extends Component {
             icon: 'android',
             to:'/appManager'
     	},{
-    		title: '权限管理',
+			title: '权限管理',
             icon: 'lock',
-            to:'/permission/'
-          /*  subMenu:[
+            to:'/permission/',
+						showSub:true,
+            subMenu:[
             	{
             		title: '权限管理',
 		            icon: 'lock',
 		            to:'/permission',
+								showSub:false,
             	},{
-            		title: '权限',
+            		title: '权限申请', 
 		            icon: 'lock',
-		            to:'/myPermission',
+		            to:'/permissionApply',
+								showSub:false,
             	}
-            ]*/
+            ]
           
-    	}]
+    	},{
+			title: '  系统配置',
+            icon: 'android',
+            to:'/systemConfig'
+    	},]
     	
     	this.state = {
     		menus:menus,

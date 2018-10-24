@@ -1,3 +1,6 @@
+
+var project = '/sso';
+
 module.exports = {
 	requestUrls:{
 		baseUrl:'/sso',
@@ -23,6 +26,11 @@ module.exports = {
 			queryUumsUserInfoByIdUrl:'/sso/queryUumsUserInfoById.json',
 			insertUumsUserPermissionRelationUrl:'/sso/insertUumsUserPermissionRelation.json',
 			deleteUumsUserPermissionRelationUrl:'/sso/deleteUumsUserPermissionRelation.json'
-		}
+		},
+		permissionApply:{
+			insertUumsPermissionApplyUrl:'/sso/insertUumsPermissionApply.json'
+		},
+		findSystemConfigUrl:project+'/findSystemConfig.json',
+		
 	}
 }
