@@ -33,6 +33,7 @@ module.exports = {
 		},
 		findSystemConfigUrl:project+'/findSystemConfig.json',
 		findSystemUserInfoUrl:project+'/findSystemUserInfo.json',
+		queryCurrentLoginUsersUrl:project+'/queryCurrentLoginUsers.json',
 		
 		
 	}

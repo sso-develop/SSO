@@ -26,6 +26,11 @@ class App extends Component {
 		            to:'/allotPermission'
 		           }
 	            ]
+	           },
+	           {
+	            title: '登录用户',
+                icon: 'android',
+                to:'/loginUserManager'
 	           }
             ]
     	},{

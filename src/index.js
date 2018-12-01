@@ -19,7 +19,9 @@ import UserProfile from './component/UserProfile.jsx';
 import AppManager from './component/AppManager.jsx';
 import Permission from './component/Permission.jsx';
 import UserManager from './component/UserManager.jsx';
+import LoginUserManager from './component/LoginUserManager.jsx';
 import AllotPermission from './component/AllotPermission.jsx';
+
 
 const pageRoute = ( 
     <Router>
@@ -28,6 +30,7 @@ const pageRoute = (
 				<Route path="/systemConfig" component={SystemConfig} />
 				<Route path="/userProfile" component={UserProfile} />
 				<Route path="/userManager" component={UserManager} />
+				<Route path="/loginUserManager" component={LoginUserManager} />
 	      <Route path="/appManager" component={AppManager} />
 	      <Route path="/permission" component={Permission} />
 				
