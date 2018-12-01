@@ -40,21 +40,21 @@ class SystemConfig extends Component {
 						wrapperCol =  {{sm:16}}
 						label="登录路径"
 					>
-						{this.state.sysConfig.ssoServerUrl}
+						<Input disabled = {true} value={this.state.sysConfig.ssoServerUrl}/>
 					</FormItem>
 					<FormItem
 						labelCol = {{sm:5}}
 						wrapperCol =  {{sm:16}}
 						label="应用CODE"
 					>
-						{this.state.sysConfig.ssoAppCode}
+					<Input disabled = {true} value={this.state.sysConfig.ssoAppCode}/>
 					</FormItem>
 					<FormItem
 						labelCol = {{sm:5}}
 						wrapperCol =  {{sm:16}}
 						label="VM模板"
 					>
-						{this.state.sysConfig.velocityFile}
+					<Input disabled = {true} value={this.state.sysConfig.velocityFile}/>
 					</FormItem>
 				</Form>
 			</div>

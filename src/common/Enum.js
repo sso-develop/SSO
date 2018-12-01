@@ -5,32 +5,35 @@ module.exports = {
 	requestUrls:{
 		baseUrl:'/sso',
 		sysApp:{
-			insertUumsSysAppUrl:'/sso/insertUumsSysApp.json',
-			queryUumsSysAppByPagerUrl:'/sso/queryUumsSysAppByPager.json',
-        	deleteUumsSysAppByIdUrl:'/sso/deleteUumsSysAppById.json',
-            queryAllUumsSysAppUrl:'/sso/queryAllUumsSysApp.json',
-            updateUumsSysAppByIdUrl:'/sso/updateUumsSysAppById.json'
+			insertUumsSysAppUrl:project+'/insertUumsSysApp.json',
+			queryUumsSysAppByPagerUrl:project+'/queryUumsSysAppByPager.json',
+        	deleteUumsSysAppByIdUrl:project+'/deleteUumsSysAppById.json',
+            queryAllUumsSysAppUrl:project+'/queryAllUumsSysApp.json',
+            updateUumsSysAppByIdUrl:project+'/updateUumsSysAppById.json'
 		},
 		sysPermission:{
-			queryUumsSysPermissionByPagerUrl:'/sso/queryUumsSysPermissionByPager.json',
-			insertUumsSysPermissionUrl:'/sso/insertUumsSysPermission.json',
-			deleteUumsSysPermissionByIdUrl:'/sso/deleteUumsSysPermissionById.json',
-			updateUumsSysPermissionByIdUrl:'/sso/updateUumsSysPermissionById.json',
-			queryUumsSysPermissionUrl:'/sso/queryUumsSysPermission.json'
+			queryUumsSysPermissionByPagerUrl:project+'/queryUumsSysPermissionByPager.json',
+			insertUumsSysPermissionUrl:project+'/insertUumsSysPermission.json',
+			deleteUumsSysPermissionByIdUrl:project+'/deleteUumsSysPermissionById.json',
+			updateUumsSysPermissionByIdUrl:project+'/updateUumsSysPermissionById.json',
+			queryUumsSysPermissionUrl:project+'/queryUumsSysPermission.json'
 		},
 		sysUser:{
-			queryUumsUserInfoByPagerUrl:'/sso/queryUumsUserInfoByPager.json',
-			insertUumsUserinfoUrl:'/sso/insertUumsUserinfo.json',
-			deleteUumsUserInfoByIdUrl:'/sso/deleteUumsUserInfoById.json',
-			updateUumsUserInfoByIdUrl:'/sso/updateUumsUserInfoById.json',
-			queryUumsUserInfoByIdUrl:'/sso/queryUumsUserInfoById.json',
-			insertUumsUserPermissionRelationUrl:'/sso/insertUumsUserPermissionRelation.json',
-			deleteUumsUserPermissionRelationUrl:'/sso/deleteUumsUserPermissionRelation.json'
+			queryUumsUserInfoByPagerUrl:project+'/queryUumsUserInfoByPager.json',
+			insertUumsUserinfoUrl:project+'/insertUumsUserinfo.json',
+			deleteUumsUserInfoByIdUrl:project+'/deleteUumsUserInfoById.json',
+			updateUumsUserInfoByIdUrl:project+'/updateUumsUserInfoById.json',
+			queryUumsUserInfoByIdUrl:project+'/queryUumsUserInfoById.json',
+			insertUumsUserPermissionRelationUrl:project+'/insertUumsUserPermissionRelation.json',
+			deleteUumsUserPermissionRelationUrl:project+'/deleteUumsUserPermissionRelation.json'
 		},
 		permissionApply:{
-			insertUumsPermissionApplyUrl:'/sso/insertUumsPermissionApply.json'
+			insertUumsPermissionApplyUrl:project+'/insertUumsPermissionApply.json',
+			queryUumsPermissionApplyByPagerUrl:project+'/queryUumsPermissionApplyByPager.json',
 		},
 		findSystemConfigUrl:project+'/findSystemConfig.json',
+		findSystemUserInfoUrl:project+'/findSystemUserInfo.json',
+		
 		
 	}
 }

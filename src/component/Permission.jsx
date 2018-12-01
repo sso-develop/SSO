@@ -140,8 +140,17 @@ class Permission extends Component {
  handleAppIdChange(currency){
    	Object.assign(this.state.searchData,{appId:currency})
  }
+
+ onHandleTypeChange(v){
+    if(v === 'LOGIN'){
+    }
+    Object.assign(this.state.formData,{type:v,code:'SSO_LOGIN_PERMISSION'})
+ }
  
   render() {
+
+    const self = this;
+
   	const dataSource = this.state.dataSource;
 		const columns = [{
 			  title: '权限名称',
@@ -282,6 +291,22 @@ class Permission extends Component {
 	         	<Form
 	         		onSubmit={this.handleModalSubmit.bind(this)}
 	         	>
+	         	    <FormItem
+                           {...formItemLayout}
+                          label="权限类型"
+                     >
+                       {getFieldDecorator('type', {
+                            initialValue:this.state.formData.type,
+                            rules: [{required: true, message: '权限类型不能为空'}],
+                        })(
+                            <Select
+                                onChange = {this.onHandleTypeChange.bind(this)}
+                            >
+                               <Option value='LOGIN'>登录权限</Option>
+                            </Select>
+                        )}
+
+                     </FormItem>
 		         	<FormItem
 				           {...formItemLayout}
 				          label="权限名称"
@@ -302,7 +327,15 @@ class Permission extends Component {
 				       		initialValue:this.state.formData.code,
 	                        rules: [{required: true, message: '权限编码不能为空'}],
 	                    })(
-	                        <Input placeholder='请输入权限编码'/>
+	                        <div>
+	                        {
+	                          this.state.formData.type === 'LOGIN'?
+	                          <Input disabled placeholder='请输入权限编码'/>
+	                          :
+	                          <Input placeholder='请输入权限编码'/>
+	                        }
+	                        </div>
+
 	                    )}
 				        
 		          	 </FormItem>

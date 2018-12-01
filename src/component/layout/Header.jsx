@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-import { Layout ,Breadcrumb,Icon,Tooltip,Avatar } from 'antd';
+import { Layout ,
+	Breadcrumb,
+	Icon,
+	Tooltip,
+	Avatar,
+	Row,
+	Col,
+} from 'antd';
 
 const { Header } = Layout;
 class Heade extends Component {
@@ -47,12 +54,23 @@ class Heade extends Component {
   render() {
     return (
        <Header style={{ background: '#fff', padding: 0 }}>
-	      {this.renderBreadcrumb()}
-	     <div className='header-right'>
-     		<Link to='/userProfile'>{window.userName}</Link>
-	     	<Tooltip title="点击登出">
-	     		<a href='logout'><Icon type="logout" style={{ fontSize: 19, color: '#08c' }} /></a>
-	     	</Tooltip>
+	      
+	     <div>
+					<Row>
+						<Col span={22}>
+							{this.renderBreadcrumb()}
+						</Col>
+						<Col span={1} >
+							<Link to='/userProfile'>{window.userName}</Link>
+						</Col>
+						<Col span={1}>
+							<div style={{paddingTop:'24px'}}>
+								<Tooltip title="点击登出">
+									<a href='logout'><Icon type="logout" style={{ fontSize: 19, color: '#08c' }} /></a>
+								</Tooltip>
+							</div>
+						</Col>
+					</Row>
 	     </div>
        </Header>
     );

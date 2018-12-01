@@ -36,7 +36,8 @@ class App extends Component {
 			title: '权限管理',
             icon: 'lock',
             to:'/permission/',
-						showSub:true,
+            /*
+			showSub:true,
             subMenu:[
             	{
             		title: '权限管理',
@@ -47,13 +48,18 @@ class App extends Component {
             		title: '权限申请', 
 		            icon: 'lock',
 		            to:'/permissionApply',
-								showSub:false,
-            	}
-            ]
+					showSub:false,
+            	},{
+					title: '申请列表', 
+					icon: 'lock',
+					to:'/permissionApplyList',
+					showSub:false,
+				}
+            ]*/
           
     	},{
 			title: '  系统配置',
-            icon: 'android',
+            icon: 'book',
             to:'/systemConfig'
     	},]
     	

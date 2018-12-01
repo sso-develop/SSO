@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import { Form,message,Row,Col,Input,Transfer,Select } from 'antd';
+import { Form,message,Row,Col,Input,Transfer,Select,
+    Divider ,
+} from 'antd';
 import Enum from '../common/Enum.js';
 import $ from 'jquery';
 const FormItem = Form.Item;
+const RequestUrls = Enum.requestUrls
 class AllotPermission extends Component {
 	constructor(props) {
 		super(props);
@@ -10,12 +13,23 @@ class AllotPermission extends Component {
 			userInfo:{
 				id:props.match.params.id
 			},
+			allApp:[],
 			targetKeys:[],
 			mockData:[]
 		}
 		this.getUser(this);
-		this.getPermission(this);
+		this.queryAllApp(this);
 	}
+	queryAllApp(){
+    		let that = this;
+    		$.post(RequestUrls.sysApp.queryAllUumsSysAppUrl, {},function(data) {
+    		  if(data.success){
+    		  	that.setState({
+    		  		allApp:data.data
+    		  	});
+    		  }
+    		});
+    	}
 	
 	getUser(){
 		let that = this;
@@ -28,10 +42,15 @@ class AllotPermission extends Component {
 		});
 	}
 	
-	getPermission(){
+	getPermission(_appId){
 		let that = this;
 		//拥有权限
-		$.post(Enum.requestUrls.sysPermission.queryUumsSysPermissionUrl, {userId:this.state.userInfo.id},function(data) {
+		var params = {
+		    userId:this.state.userInfo.id,
+		    appId:_appId
+		}
+
+		$.post(Enum.requestUrls.sysPermission.queryUumsSysPermissionUrl, params,function(data) {
 		  if(!data.success){
 		  	message.error(data.msg)
 		  }else{
@@ -42,7 +61,10 @@ class AllotPermission extends Component {
 		  }
 		});
 		//所有权限
-		$.post(Enum.requestUrls.sysPermission.queryUumsSysPermissionUrl, {},function(data) {
+		var p = {
+        		    appId:_appId
+        		}
+		$.post(Enum.requestUrls.sysPermission.queryUumsSysPermissionUrl, p,function(data) {
 		  if(!data.success){
 		  	message.error(data.msg)
 		  }else{
@@ -58,6 +80,9 @@ class AllotPermission extends Component {
 		  }
 		});
 		
+	}
+	onAppChangeHandle(v){
+	    this.getPermission(v);
 	}
 	handleChange(nextTargetKeys, direction, moveKeys) {
 		let permissionIds = '';
@@ -100,6 +125,7 @@ class AllotPermission extends Component {
 		  });
 		}
 		return(
+		   <div>
 			<div className='ant-advanced-search-form' >
 			 <Form layout="inline">
 				<Row>
@@ -130,32 +156,40 @@ class AllotPermission extends Component {
 			             {this.state.userInfo.staffNo}
 			          </FormItem>
 			        </Col>
-			        <Col span={6}>
+			        <Col span={12}>
 			           <FormItem label='请选择系统'>
 			             <Select
-			             	style={{ width: 150 }}
+			             	style={{ width: 300 }}
+			             	onChange = {this.onAppChangeHandle.bind(this)}
 			             >
-						    <Select.Option value="jack">Jack</Select.Option>
-						    <Select.Option value="lucy">Lucy</Select.Option>
-						    <Select.Option value="tom">Tom</Select.Option>
+			             {
+			                this.state.allApp.map(function (app, i) {
+                                return (<Select.Option key={app.id} value={app.id}>{app.name}/{app.appCode}</Select.Option>)
+                            })
+			             }
 						  </Select>
 			          </FormItem>
 			        </Col>
 				</Row>
 			</Form>
-			<Transfer
-				listStyle={{
-		          width: 300,
-		          height: 300,
-		        }}
-		        dataSource={this.state.mockData}
-		        targetKeys={this.state.targetKeys}
-		        titles={['所有权限', '已有权限']}
-		        showSearch
-		        render={item => item.title}
-		        onChange={this.handleChange.bind(this)}
-		        /*targetKeys = {targetKeys}*/
-		      />
+			</div>
+			<Divider>分配权限</Divider>
+			<div className='ant-advanced-search-form' style = {{marginTop: '10px'}}>
+                <Transfer
+                    listStyle={{
+                      width: 300,
+                      height: 300,
+                    }}
+                    dataSource={this.state.mockData}
+                    targetKeys={this.state.targetKeys}
+                    titles={['所有权限', '已有权限']}
+                    operations={['添加', '删除']}
+                    showSearch
+                    render={item => item.title}
+                    onChange={this.handleChange.bind(this)}
+                    /*targetKeys = {targetKeys}*/
+                  />
+		      </div>
 			</div>
 			
 		)
