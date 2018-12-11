@@ -3,6 +3,7 @@ import { Form,message,Row,Col,Input,Transfer,Select,
     Divider ,
 } from 'antd';
 import Enum from '../common/Enum.js';
+import { ajaxPost } from '../common/utils.js';
 import $ from 'jquery';
 const FormItem = Form.Item;
 const RequestUrls = Enum.requestUrls
@@ -33,12 +34,8 @@ class AllotPermission extends Component {
 	
 	getUser(){
 		let that = this;
-		$.post(Enum.requestUrls.sysUser.queryUumsUserInfoByIdUrl, {id:this.state.userInfo.id},function(data) {
-		  if(!data.success){
-		  	message.error(data.msg)
-		  }else{
-		  	that.setState({userInfo:data.data})
-		  }
+		ajaxPost(Enum.requestUrls.sysUser.queryUumsUserInfoByIdUrl,{id:this.state.userInfo.id},function(res){
+		    that.setState({userInfo:res.value})
 		});
 	}
 	

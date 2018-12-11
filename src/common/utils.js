@@ -1,4 +1,10 @@
-import moment from 'moment'; 
+import React from 'react';
+import moment from 'moment';
+import $ from 'jquery';
+import {
+    message,
+    Modal
+} from 'antd';
 
 
 function getLocationQuery(){
@@ -30,8 +36,28 @@ function isEmpty(_s){
 		return false;
 	}
 }
+/** ajax post
+ * @param  _url
+ * @param  _params
+ * @param  _fn
+ */
+function ajaxPost(_url,_params,_fn){
 
-function getAllApp(){
+    $.post(_url,_params,function(data){
+        if(data.success){
+            _fn(data);
+        }else if(data.resultCode != undefined && data.resultCode.code === -4){
+            var info = <p dangerouslySetInnerHTML={{ __html: '<a href = '+data.msg+'>重新登录</a>'}}/>
+            Modal.confirm({
+                title: '登录提示',
+                content: info,
+                okText: '确认',
+                cancelText: '取消',
+              });
+        }else{
+            message.error(data.msg)
+        }
+    });
 }
 
 module.exports = {
@@ -40,4 +66,5 @@ module.exports = {
 	onHandleSelectChangeEvent,
 	onHandleDateTimeChangeEvent,
 	isEmpty,
+	ajaxPost
 }

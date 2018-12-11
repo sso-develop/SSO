@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Link } from 'react-router-dom';
 import {Table,message,Divider,Popconfirm,Form,Input,Button,Row,Col,Modal} from 'antd';
 import Enum from '../common/Enum.js';
+import { ajaxPost } from '../common/utils.js';
 import $ from 'jquery';
 const FormItem = Form.Item;
 const RequestUrls = Enum.requestUrls
@@ -37,54 +38,42 @@ class UserManager extends Component {
   loadListData(){
   	let that = this;
   	Object.assign(this.state.pager,{loading:true})
-  	$.post(RequestUrls.sysUser.queryUumsUserInfoByPagerUrl,this.state.searchData,function(data){
-  		if(data.success){
-  			const pager = data.data
-  			that.setState({
-  				pager:{
-  					dataSource:pager.result,
-					total:pager.totalCount,
-					pageSize:pager.pageSize,
-					loading:false
-				}
-  			})
-  		}else{
-  			message.error(data.msg)
-  		}
-  	});
+
+  	ajaxPost(RequestUrls.sysUser.queryUumsUserInfoByPagerUrl,
+  	    this.state.searchData,
+  	    function(data){
+  	        const pager = data.value
+            that.setState({
+                pager:{
+                    dataSource:pager.result,
+                    total:pager.totalCount,
+                    pageSize:pager.pageSize,
+                    loading:false
+                }
+            })
+  	    }
+  	)
   }
   handleDelUser(record){
   	let that = this;
-  	$.post(RequestUrls.sysUser.deleteUumsUserInfoByIdUrl,{id:record.id},function(res){
-  		if(res.success){
-  			that.loadListData(that);
-  		}else{
-  			message.error(res.msg)
-  		}
+  	ajaxPost(RequestUrls.sysUser.deleteUumsUserInfoByIdUrl,{id:record.id},function(res){
+  	    that.loadListData(that);
   	});
   }
   addUser(){
   	let that = this;
-  	$.post(RequestUrls.sysUser.insertUumsUserinfoUrl,this.state.formData,function(res){
-  		if(res.success){
-  			that.closeModal(that);
-  			that.loadListData(that);
-  		}else{
-  			message.error(res.msg)
-  		}
+  	ajaxPost(RequestUrls.sysUser.insertUumsUserinfoUrl,this.state.formData,function(res){
+  	    that.closeModal(that);
+        that.loadListData(that);
   	});
   }
   
   editUser(){
   		let that = this;
-	  	$.post(RequestUrls.sysUser.updateUumsUserInfoByIdUrl,this.state.formData,function(res){
-	  		if(res.success){
-	  			that.closeModal(that);
-	  			that.loadListData(that);
-	  		}else{
-	  			message.error(res.msg)
-	  		}
-	  	});
+  		ajaxPost(RequestUrls.sysUser.updateUumsUserInfoByIdUrl,this.state.formData,function(res){
+  		    that.closeModal(that);
+            that.loadListData(that);
+  		});
   }
   
   closeModal(){
@@ -181,12 +170,12 @@ class UserManager extends Component {
 	  	let id = record.id;
 	  	if(record.operatorName === 'admin'){
 	  		return <span>
-	  			<Link to={{pathname: '/allotPermission/'+id}}> 添加权限</Link>
+	  			<Link to={{pathname: '/allotPermission/'+id}}> 权限管理</Link>
 	  		</span>
 	  	}else{
 	  		   return (
 			  	<span>
-			  		<Link to={{pathname: '/allotPermission/'+id}}> 添加权限</Link>
+			  		<Link to={{pathname: '/allotPermission/'+id}}> 权限管理</Link>
 			  		<Divider type="vertical" />
 			       <a onClick={this.handleModalShow.bind(this,'edit',record)}>编辑</a>
 			       <Divider type="vertical" />
