@@ -46,7 +46,7 @@ function ajaxPost(_url,_params,_fn){
     $.post(_url,_params,function(data){
         if(data.success){
             _fn(data);
-        }else if(data.resultCode != undefined && data.resultCode.code === -4){
+        }else if(data.resultCode != undefined && data.resultCode === -4){
             var info = <p dangerouslySetInnerHTML={{ __html: '<a href = '+data.msg+'>重新登录</a>'}}/>
             Modal.confirm({
                 title: '登录提示',

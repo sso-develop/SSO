@@ -42,7 +42,7 @@ class UserManager extends Component {
   	ajaxPost(RequestUrls.sysUser.queryUumsUserInfoByPagerUrl,
   	    this.state.searchData,
   	    function(data){
-  	        const pager = data.value
+  	        const pager = data.data
             that.setState({
                 pager:{
                     dataSource:pager.result,
@@ -90,7 +90,7 @@ class UserManager extends Component {
 	 });
 	 this.props.form.resetFields()
   }
-   handleCancel(e){
+  handleCancel(e){
 	this.closeModal(this);
   }
   handleModalShow(op,res){
