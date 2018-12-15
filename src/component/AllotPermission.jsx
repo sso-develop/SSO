@@ -35,7 +35,7 @@ class AllotPermission extends Component {
 	getUser(){
 		let that = this;
 		ajaxPost(Enum.requestUrls.sysUser.queryUumsUserInfoByIdUrl,{id:this.state.userInfo.id},function(res){
-		    that.setState({userInfo:res.value})
+		    that.setState({userInfo:res.data})
 		});
 	}
 	
