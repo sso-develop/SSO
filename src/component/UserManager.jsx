@@ -4,6 +4,8 @@ import {Table,message,Divider,Popconfirm,Form,Input,Button,Row,Col,Modal} from '
 import Enum from '../common/Enum.js';
 import { ajaxPost } from '../common/utils.js';
 import $ from 'jquery';
+
+
 const FormItem = Form.Item;
 const RequestUrls = Enum.requestUrls
 class UserManager extends Component {
@@ -220,7 +222,9 @@ class UserManager extends Component {
        		 	 <FormItem
        		 	 {...formItemLayout}
        		 	 label='昵称'>
+						
        		 	 	<Input name='nickName' onChange = {this.handleSearchChange.bind(this)} value = {this.state.searchData.nickName}/>
+							
        		 	 </FormItem>
        		 	</Col>
        		 	<Col span={12} style={{ textAlign: 'right' }}>

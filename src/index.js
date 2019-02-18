@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import dva from 'dva';
+
 import {
   HashRouter as Router,
   Route
@@ -23,6 +25,9 @@ import LoginUserManager from './component/LoginUserManager.jsx';
 import AllotPermission from './component/AllotPermission.jsx';
 
 
+const app = dva(); 
+app.model(require('./models/app').default);
+
 const pageRoute = ( 
     <Router>
 	    <App>
@@ -39,5 +44,9 @@ const pageRoute = (
 	    </App>
   </Router>
 ); 
-ReactDOM.render(pageRoute, document.getElementById('root'));
-registerServiceWorker();
+//ReactDOM.render(pageRoute, document.getElementById('root'));
+
+app.router(() => pageRoute );
+app.start('#root');
+
+//registerServiceWorker();

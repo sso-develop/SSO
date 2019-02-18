@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Form,message,Row,Col,Input,Transfer,Select,
     Divider ,
 } from 'antd';
+
+import AppSelect from './modules/AppSelect.jsx';
+
 import Enum from '../common/Enum.js';
 import { ajaxPost } from '../common/utils.js';
 import $ from 'jquery';
@@ -14,23 +17,13 @@ class AllotPermission extends Component {
 			userInfo:{
 				id:props.match.params.id
 			},
-			allApp:[],
 			targetKeys:[],
 			mockData:[]
 		}
 		this.getUser(this);
-		this.queryAllApp(this);
+		
 	}
-	queryAllApp(){
-    		let that = this;
-    		$.post(RequestUrls.sysApp.queryAllUumsSysAppUrl, {},function(data) {
-    		  if(data.success){
-    		  	that.setState({
-    		  		allApp:data.data
-    		  	});
-    		  }
-    		});
-    	}
+	
 	
 	getUser(){
 		let that = this;
@@ -155,16 +148,25 @@ class AllotPermission extends Component {
 			        </Col>
 			        <Col span={12}>
 			           <FormItem label='请选择系统'>
-			             <Select
-			             	style={{ width: 300 }}
-			             	onChange = {this.onAppChangeHandle.bind(this)}
-			             >
-			             {
-			                this.state.allApp.map(function (app, i) {
-                                return (<Select.Option key={app.id} value={app.id}>{app.name}/{app.appCode}</Select.Option>)
-                            })
-			             }
-						  </Select>
+								 
+								 <AppSelect
+								 	style={{ width: 300 }}
+									onChange = {this.onAppChangeHandle.bind(this)}
+
+								 />
+								 {
+// 			             <Select
+// 			             	style={{ width: 300 }}
+// 			             	onChange = {this.onAppChangeHandle.bind(this)}
+// 			             >
+// 			             {
+// 			                this.state.allApp.map(function (app, i) {
+//                                 return (<Select.Option key={app.id} value={app.id}>{app.name}/{app.appCode}</Select.Option>)
+//                             })
+// 			             }
+//									
+//						  </Select>
+							}
 			          </FormItem>
 			        </Col>
 				</Row>
