@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { Form,message,Row,Col,Input,Transfer,Select,
+import {
+    Form,
+    message,
+    Row,
+    Col,
+    Input,
+    Transfer,
+    Select,
     Divider ,
 } from 'antd';
 
@@ -10,6 +17,7 @@ import { ajaxPost } from '../common/utils.js';
 import $ from 'jquery';
 const FormItem = Form.Item;
 const RequestUrls = Enum.requestUrls
+
 class AllotPermission extends Component {
 	constructor(props) {
 		super(props);
@@ -179,6 +187,12 @@ class AllotPermission extends Component {
                       width: 300,
                       height: 300,
                     }}
+										locale= {{                        
+												itemUnit: '项',
+                        itemsUnit: '项',
+                        notFoundContent: '列表为空',
+                        searchPlaceholder: '请输入搜索内容'
+                    }}
                     dataSource={this.state.mockData}
                     targetKeys={this.state.targetKeys}
                     titles={['所有权限', '已有权限']}
@@ -186,7 +200,7 @@ class AllotPermission extends Component {
                     showSearch
                     render={item => item.title}
                     onChange={this.handleChange.bind(this)}
-                    /*targetKeys = {targetKeys}*/
+
                   />
 		      </div>
 			</div>
