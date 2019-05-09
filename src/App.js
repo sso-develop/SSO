@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom' ;
 import { Layout } from 'antd';
+
+import zhCN from 'antd/lib/locale-provider/zh_CN';
+
 import Side from "./component/layout/Side.jsx";
 import Header from "./component/layout/Header.jsx";
 
@@ -81,17 +84,21 @@ class App extends Component {
 	
   render() {
     return (
-        <Layout style={{ minHeight: '100vh' }}>
-		      <Side path = {this.state.path} menus ={this.state.menus}/>
-		      <Layout>
-		      <Header path = {this.state.path} menus ={this.state.menus}/>
-		        <Content style={{ margin: '	16px' }}>
-		            <div style={{padding:'5px','overflow':'inherit'}}>
-		            	{this.props.children}
-		            </div>
-		        </Content>
-		      </Layout>
-		    </Layout>
+
+       <LocaleProvider locale={zhCN}>
+         <Layout style={{ minHeight: '100vh' }}>
+          <Side path = {this.state.path} menus ={this.state.menus}/>
+          <Layout>
+          <Header path = {this.state.path} menus ={this.state.menus}/>
+            <Content style={{ margin: '	16px' }}>
+                <div style={{padding:'5px','overflow':'inherit'}}>
+                    {this.props.children}
+                </div>
+            </Content>
+          </Layout>
+        </Layout>
+      </LocaleProvider>
+
     );
   }
 }
